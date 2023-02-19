@@ -37,6 +37,9 @@ MOUNT="$(buildah mount "$CONTAINER")"
 echo + "rsync -v -rl --exclude .gitignore ./src/ …/" >&2
 rsync -v -rl --exclude '.gitignore' "$BUILD_DIR/src/" "$MOUNT/"
 
+pkg_install "$CONTAINER" --virtual .mailconfig-run-deps \
+    rsync
+
 cleanup "$CONTAINER"
 
 cmd buildah config \
