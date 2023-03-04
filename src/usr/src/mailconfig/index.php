@@ -44,7 +44,7 @@ header('Content-Type: text/html; charset=utf-8');
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width">
         <title>E-Mail Client Configuration</title>
-        <style type="text/css">*{box-sizing:border-box;border:0;margin:0;padding:0}body,html{height:100%;background:#fff;font-family:Lucida Grande,Geneva,Verdana,sans-serif}#header,#main{width:100%;padding:0 .5em}#header{background:#428bca}.container{max-width:48em;margin:0 auto;padding:1em}#main .container{margin:4em auto;background:#f3f3f3}h1,h1+p{color:#fff}h1{font-size:2rem;font-weight:bold;padding:3rem 0}h1+p{font-style:italic;margin-top:-1.5rem;padding-bottom:3rem}h2{padding:0 0 .5em;margin:0 0 1em;border-bottom:1px solid #ccc;font-size:1.5rem}.content{padding:.5em 1em;background:#fff}.content .table-wrapper{overflow-x:auto}table{border-spacing:0;min-width:100%}th{font-weight:bold;text-align:center;border-bottom:1px solid #ccc}td,th{padding:.25em .5em;background:#fff}td:first-child{background:#f3f3f3}td:not(:first-child){min-width:9em}td:not(:last-child),th:not(:last-child){border-right:1px solid #ccc}tbody tr:last-child td:first-child{border-bottom-left-radius:5px}code{font-family:Lucida Console,Monaco,Courier New,monospace;font-size:.9em}#main .container,.content,#main{border:1px solid #ccc;border-radius:5px}</style>
+        <style type="text/css">*{box-sizing:border-box;border:0;margin:0;padding:0}body,html{height:100%;background:#fff;font-family:Lucida Grande,Geneva,Verdana,sans-serif}#header,#main{width:100%;padding:0 .5em}#header{background:#428bca}.container{max-width:48em;margin:0 auto;padding:1em}#main .container{margin:4em auto;background:#f3f3f3}h1,h1+p{color:#fff}h1{font-size:2rem;font-weight:bold;padding:3rem 0}h1+p{font-style:italic;margin-top:-1.5rem;padding-bottom:3rem}h2{padding:0 0 .5em;margin:0 0 1em;border-bottom:1px solid #ccc;font-size:1.5rem}.content{padding:.75em 1em;background:#fff}.content p{margin-bottom:1em;line-height:150%}.content form{display:flex;flex-wrap:wrap;justify-content:space-evenly;gap:0.5em 1em}input{padding:0.5em 1em;outline: 0 none;border:1px solid #ccc;border-radius:5px;transition:none .2s ease-in;transition-property:border-color,box-shadow}input:focus{border-color:#428bca;box-shadow:0 0 8px #428bca;}input[type="submit"]{background:#428bca;border-color:#428bca;color:#fff;cursor: pointer}.content .table-wrapper{overflow-x:auto}table{border-spacing:0;min-width:100%}th{font-weight:bold;text-align:center;border-bottom:1px solid #ccc}td,th{padding:.25em .5em;background:#fff}td:first-child{background:#f3f3f3}td:not(:first-child){min-width:9em}td:not(:last-child),th:not(:last-child){border-right:1px solid #ccc}tbody tr:last-child td:first-child{border-bottom-left-radius:5px}code{font-family:Lucida Console,Monaco,Courier New,monospace;font-size:.9em}#main .container,.content,#main{border:1px solid #ccc;border-radius:5px}</style>
     </head>
     <body<?php if ($serverId !== '') { echo " data-server-id=\"" . e($serverId, ENT_COMPAT) . "\""; } ?>>
         <div id="header">
@@ -168,6 +168,18 @@ header('Content-Type: text/html; charset=utf-8');
                     </div>
                 </div>
             <?php } ?>
+
+            <div class="container">
+                <h2>Apple Configuration Profile</h2>
+                <div class="content">
+                    <p>Enter your full email address and click the download button to setup your Apple mobile device.</p>
+                    <form method="GET" action="email.mobileconfig">
+                        <input type="email" name="email" value="" minlength="3" required="required"
+                            placeholder="Email address" style="min-width:20em;flex-grow:2" />
+                        <input type="submit" value="Download" style="min-width:10em;flex-grow:1" />
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

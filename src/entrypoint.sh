@@ -47,6 +47,12 @@ if [ "$1" == "php-fpm" ]; then
                 "$(echo "$MAILCONFIG_SMTP_SSL" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
             [ -z "$MAILCONFIG_SMTP_NTLM" ] || printf "\$config['smtp_ntlm'] = %s;\n" \
                 "$(echo "$MAILCONFIG_SMTP_NTLM" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
+            [ -z "$MAILCONFIG_APPLE_IDENTIFIER" ] || printf "\$config['apple_identifier'] = %s;\n" \
+                "$(echo "$MAILCONFIG_APPLE_IDENTIFIER" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
+            [ -z "$MAILCONFIG_APPLE_UUID" ] || printf "\$config['apple_uuid'] = %s;\n" \
+                "$(echo "$MAILCONFIG_APPLE_UUID" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
+            [ -z "$MAILCONFIG_APPLE_MAIL_UUID" ] || printf "\$config['apple_mail_uuid'] = %s;\n" \
+                "$(echo "$MAILCONFIG_APPLE_MAIL_UUID" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
         } > "/etc/mailconfig/config.inc.php"
     fi
 

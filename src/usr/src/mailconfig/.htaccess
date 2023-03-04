@@ -2,4 +2,5 @@ RewriteEngine On
 RewriteRule ^$ index.php [END]
 RewriteRule ^autoconfig/config-v1\.1\.xml$ autoconfig-v1.1.php [END]
 RewriteRule ^Autodiscover/Autodiscover\.xml$ autodiscover-v10.0.php [NC,END]
+RewriteRule ^email\.mobileconfig$ mobileconfig.php [END]
 RewriteRule ^ - [R=404,END]
