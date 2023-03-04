@@ -97,6 +97,10 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
                         <?php if ($mail !== '') { ?>
                             <LoginName><?php echo e($mail); ?></LoginName>
                         <?php } ?>
+                        <DomainRequired>on</DomainRequired>
+                        <?php if ($domain !== '') { ?>
+                            <DomainName><?php echo e($domain); ?></DomainName>
+                        <?php } ?>
                         <SPA><?php echo $imapNTLM ? 'on' : 'off'; ?></SPA>
                     </Protocol>
                 <?php } ?>
@@ -117,6 +121,10 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
                         <AuthRequired>on</AuthRequired>
                         <?php if ($mail !== '') { ?>
                             <LoginName><?php echo e($mail); ?></LoginName>
+                        <?php } ?>
+                        <DomainRequired>on</DomainRequired>
+                        <?php if ($domain !== '') { ?>
+                            <DomainName><?php echo e($domain); ?></DomainName>
                         <?php } ?>
                         <SPA><?php echo $smtpNTLM ? 'on' : 'off'; ?></SPA>
                     </Protocol>
