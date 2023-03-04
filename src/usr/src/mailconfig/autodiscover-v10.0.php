@@ -59,7 +59,7 @@ $smtpNTLM = in_array(strtolower($config['smtp_ntlm'] ?? ''), [ 'yes', 'true', 'o
 $serverId = $config['server_id'] ?? SERVER_NAME ?? $imapHost ?? $smtpHost ?? 'mailconfig';
 $serverName = $config['server_name'] ?? '';
 
-header('Content-Type: application/xml');
+header('Content-Type: application/xml; charset=utf-8');
 echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
 ?>
 <Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006">

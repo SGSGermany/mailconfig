@@ -36,7 +36,7 @@ $serverId = $config['server_id'] ?? SERVER_NAME ?? $imapHost ?? $smtpHost ?? 'ma
 $serverName = $config['server_name'] ?? '';
 
 header(SERVER_PROTOCOL . ' 200 OK');
-header('Content-Type: text/html');
+header('Content-Type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -55,6 +55,7 @@ header('Content-Type: text/html');
                 <?php } ?>
             </div>
         </div>
+
         <div id="main">
             <?php if ($imapHost !== '') { ?>
                 <div class="container">
@@ -111,6 +112,7 @@ header('Content-Type: text/html');
                     </div>
                 </div>
             <?php } ?>
+
             <?php if ($smtpHost !== '') { ?>
                 <div class="container">
                     <h2>Outgoing Server (SMTP)</h2>

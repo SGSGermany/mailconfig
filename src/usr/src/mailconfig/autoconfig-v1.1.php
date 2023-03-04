@@ -33,7 +33,7 @@ if (file_exists('/etc/mailconfig/config.inc.php')) {
 $mail = $domain = '';
 if (!empty($_GET['emailaddress']) && (filter_var($_GET['emailaddress'], FILTER_VALIDATE_EMAIL) !== false)) {
     $mail = filter_var($_GET['emailaddress'], FILTER_SANITIZE_EMAIL);
-    $domain = substr(strrchr($_GET['emailaddress'], '@'), 1);
+    $domain = substr(strrchr($mail, '@'), 1);
 }
 
 $imapHost = $config['imap_host'] ?? '';
@@ -51,7 +51,7 @@ $serverName = $config['server_name'] ?? '';
 $serverNameShort = $config['server_name_short'] ?? '';
 
 header(SERVER_PROTOCOL . ' 200 OK');
-header('Content-Type: application/xml');
+header('Content-Type: application/xml; charset=utf-8');
 echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
 ?>
 <clientConfig version="1.1">
