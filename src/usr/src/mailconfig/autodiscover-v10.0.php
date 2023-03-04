@@ -35,13 +35,14 @@ header(SERVER_PROTOCOL . ' 200 OK');
 
 preg_match('#<EMailAddress>(.*?)</EMailAddress>#', file_get_contents('php://input'), $matches);
 
-$mail = $error = '';
+$mail = $domain = $error = '';
 if (!empty($matches[1])) {
     if (filter_var($matches[1], FILTER_VALIDATE_EMAIL) === false) {
         header(SERVER_PROTOCOL . ' 400 Bad Request');
         $error = 'Invalid request';
     } else {
-        $mail = $matches[1];
+        $mail = filter_var($matches[1], FILTER_SANITIZE_EMAIL);
+        $domain = substr(strrchr($mail, '@'), 1);
     }
 }
 
@@ -56,6 +57,7 @@ $smtpSSL = in_array(strtoupper($config['smtp_ssl'] ?? ''), [ 'SSL', 'STARTTLS' ]
 $smtpNTLM = in_array(strtolower($config['smtp_ntlm'] ?? ''), [ 'yes', 'true', 'on', '1' ], true);
 
 $serverId = $config['server_id'] ?? SERVER_NAME ?? $imapHost ?? $smtpHost ?? 'mailconfig';
+$serverName = $config['server_name'] ?? '';
 
 header('Content-Type: application/xml');
 echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
@@ -69,6 +71,11 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
                 <DebugData />
             </Error>
         <?php } else { ?>
+            <?php if ($serverName !== '') { ?>
+                <User>
+                    <DisplayName><?php echo e($serverName); ?></DisplayName>
+                </User>
+            <?php } ?>
             <Account>
                 <AccountType>email</AccountType>
                 <Action>settings</Action>
