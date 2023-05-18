@@ -33,6 +33,8 @@ if [ "$1" == "php-fpm" ]; then
                 "$(echo "$MAILCONFIG_SERVER_NAME_SHORT" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
             [ -z "$MAILCONFIG_IMAP_HOST" ] || printf "\$config['imap_host'] = %s;\n" \
                 "$(echo "$MAILCONFIG_IMAP_HOST" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
+            [ -z "$MAILCONFIG_WEBMAIL" ] || printf "\$config['webmail'] = %s;\n" \
+                "$(echo "$MAILCONFIG_WEBMAIL" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
             [ -z "$MAILCONFIG_IMAP_PORT" ] || printf "\$config['imap_port'] = %s;\n" \
                 "$(echo "$MAILCONFIG_IMAP_PORT" | php -r 'var_export(trim(fgets(STDIN)) ?: null);')";
             [ -z "$MAILCONFIG_IMAP_SSL" ] || printf "\$config['imap_ssl'] = %s;\n" \

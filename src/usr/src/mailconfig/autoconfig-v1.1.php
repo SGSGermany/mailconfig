@@ -36,6 +36,8 @@ if (!empty($_GET['emailaddress']) && (filter_var($_GET['emailaddress'], FILTER_V
     $domain = substr(strrchr($mail, '@'), 1);
 }
 
+$webmail = $config['webmail'] ?? '';
+
 $imapHost = $config['imap_host'] ?? '';
 $imapPort = (isset($config['imap_port']) && ($config['imap_port'] !== '')) ? (int) $config['imap_port'] : 143;
 $imapSSL = in_array(strtoupper($config['imap_ssl'] ?? ''), [ 'SSL', 'STARTTLS' ], true) ? strtoupper($config['imap_ssl']) : '';
@@ -82,6 +84,11 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
                 <authentication><?php echo $smtpNTLM ? 'NTLM' : 'password-cleartext'; ?></authentication>
                 <username><?php echo ($mail !== '') ? e($mail) : '%EMAILADDRESS%'; ?></username>
             </outgoingServer>
+        <?php } ?>
+        <?php if ($webmail !== '') { ?>
+            <webMail>
+                <loginPage url="<?php echo e($webmail, ENT_QUOTES); ?>" />
+            </webMail>
         <?php } ?>
     </emailProvider>
 </clientConfig>
