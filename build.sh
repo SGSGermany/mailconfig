@@ -53,7 +53,7 @@ cmd buildah config \
 cmd buildah config \
     --annotation org.opencontainers.image.title="MailConfig" \
     --annotation org.opencontainers.image.description="A php-fpm container running an E-Mail Client Configuration service." \
-    --annotation org.opencontainers.image.version="${VERSION:-1.0.0}" \
+    --annotation org.opencontainers.image.version- \
     --annotation org.opencontainers.image.url="https://github.com/SGSGermany/mailconfig" \
     --annotation org.opencontainers.image.authors="SGS Serious Gaming & Simulations GmbH" \
     --annotation org.opencontainers.image.vendor="SGS Serious Gaming & Simulations GmbH" \
