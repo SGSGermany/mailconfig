@@ -46,6 +46,8 @@ rsync -v -rl --exclude '.gitignore' "$BUILD_DIR/src/" "$MOUNT/"
 pkg_install "$CONTAINER" --virtual .mailconfig-run-deps \
     rsync
 
+php_cleanup "$CONTAINER"
+
 cleanup "$CONTAINER"
 
 con_cleanup "$CONTAINER"
